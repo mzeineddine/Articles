@@ -3,15 +3,15 @@ class sql_utils{
     static function query_execution($query, $format, $args){
         if($query){
             // $query->bind_param($format,$args);
-            $params = array_merge([$format], $args);
-
-            $refParams = [];
-        
-            foreach ($params as $key => &$value) {
-                $refParams[$key] = &$value;
+            if($format!=""){
+                $params = array_merge([$format], $args);
+                $refParams = [];
+                foreach ($params as $key => &$value) {
+                    $refParams[$key] = &$value;
+                }
+                call_user_func_array([$query,'bind_param'], $refParams);
             }
-
-            call_user_func_array([$query,'bind_param'], $refParams);
+            
             if ($query->execute()) {
                 return true;
             }else {

@@ -6,11 +6,9 @@
                                                                         email VARCHAR(255) NOT NULL UNIQUE,
                                                                         pass VARCHAR(255) NOT NULL,
                                                                         user_name VARCHAR(255) NOT NULL);");
-    if ($query->execute()) {
+    if(sql_utils::query_execution($query,"",[])){
         echo "USERS Table Created";
-        return true;
-    }else {
+    }else{
         echo "USERS NOT Table Created";
-        return false;
     }
 ?>
