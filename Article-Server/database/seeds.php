@@ -1,13 +1,14 @@
 <?php
     $base = "..";
     require $base . "/connections/connection.php";
+    require $base . "/utils.php";
     function store_user($email,$pass,$user_name,$conn){
         $query = $conn->prepare("INSERT INTO users (email, pass, user_name) VALUES (?,?,?);");
         sql_utils::query_execution($query,"sss", [$email,$pass,$user_name]);
     }
 
     function store_question($question,$answer,$conn){
-        $query = $conn->prepare("INSERT INTO users (question,answer) VALUES (?,?);");
+        $query = $conn->prepare("INSERT INTO questions (question,answer) VALUES (?,?);");
         sql_utils::query_execution($query,"ss", [$question,$answer]);
     }
 

@@ -1,10 +1,14 @@
 <?php
-    $query = $conn->prepare("CREATE TABLE IF NOT EXISTS questions (id AUTO_INCREMENT INT PRIMARY KEY,
+    $base = "..";
+    require $base."/connections/connection.php";
+    $query = $conn->prepare("CREATE TABLE IF NOT EXISTS questions (id INT AUTO_INCREMENT PRIMARY KEY,
                                                                             question VARCHAR(255),
                                                                             answer VARCHAR(255));");
-    if(sql_utils::query_execution($query,"",[])){
+    if ($query->execute()) {
         echo "QUESTIONS Table Created";
-    }else{
+        return true;
+    }else {
         echo "QUESTIONS NOT Table Created";
+        return false;
     }
 ?>
