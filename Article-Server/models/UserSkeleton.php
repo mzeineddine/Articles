@@ -7,7 +7,8 @@
         function __construct($user, $email,$pass,$id = -1){
             $this->user_name = $user;
             $this->email = $email;
-            $this->$pass = $pass;
+            $this->pass = $pass;
+            $this->id = $id;
         }
         function get_user_name(){
             return $this->user_name;
@@ -35,6 +36,9 @@
 
         function set_id($id){
             $this->id = $id;
+        }
+        function toArray() {
+            return get_object_vars($this);
         }
     }  
 ?>
