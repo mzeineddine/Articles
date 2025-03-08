@@ -1,7 +1,7 @@
 <?php
     class Question{
         static function create_question($question,$answer,$conn){
-            $query = $conn->prepare("INSERT INTO questions (question, email) VALUES (?,?)");
+            $query = $conn->prepare("INSERT INTO questions (question, answer) VALUES (?,?)");
             if(sql_utils::query_execution($query, "ss", [$question,$answer])){
                 return $query->affected_rows>0;
             }else return false;
