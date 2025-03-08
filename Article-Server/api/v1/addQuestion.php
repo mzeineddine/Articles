@@ -1,6 +1,8 @@
 <?php
     $base = "../..";
     require $base . "/connections/connection.php";
+    require $base . "/models/Question.php";
+    require $base . "/utils.php";
 
     if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
         $data = json_decode(file_get_contents('php://input'), true);

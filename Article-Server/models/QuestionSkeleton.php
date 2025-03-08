@@ -19,5 +19,8 @@
         function set_answer($answer){
             $this->answer = $answer;
         }
+        function toArray() {
+            return get_object_vars($this);
+        }
     }  
 ?>

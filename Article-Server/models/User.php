@@ -14,7 +14,15 @@
                 $user = null;
                 while($user_db = mysqli_fetch_assoc($result)){
                     $user = new UserSkeleton($user_db['user_name'], $user_db['email'], $user_db['pass'],$user_db['id']);
-                } return $user;
+                }
+                return $user ? $user->toArray() : null;
+            }
+        }
+        static function check_email_usage($email,$conn){
+            $query = $conn->prepare("SELECT * FROM users WHERE email=?");
+            if(sql_utils::query_execution($query,"s", [$email])){
+                $result = $query->get_result();
+                return $result->num_rows>0;
             }
         }
     }

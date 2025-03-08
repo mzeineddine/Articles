@@ -13,8 +13,9 @@
                 $result = $query->get_result();
                 $questions = [];
                 while($question_db = mysqli_fetch_assoc($result)){
-                    $questions[] = new QuestionSkeleton($question_db['question'], $question_db['answer']);
-                } return $questions;
+                    $question = new QuestionSkeleton($question_db['question'], $question_db['answer']);
+                    $questions[] = $question->toArray();
+                } return $questions;    
             }
         }
     }
