@@ -1,5 +1,5 @@
 <?php
-    class Question{
+    class QuestionSkeleton{
         private $question;
         private $answer;
         function __construct($question, $answer){

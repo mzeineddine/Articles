@@ -1,9 +1,10 @@
 <?php
-    class User{
+    class UserSkeleton{
         private $user_name;
         private $email;
         private $pass;
-        function __construct($user, $email,$pass){
+        private $id;
+        function __construct($user, $email,$pass,$id = -1){
             $this->user_name = $user;
             $this->email = $email;
             $this->$pass = $pass;
@@ -18,6 +19,10 @@
             return $this->pass;
         }
 
+        function get_id(){
+            return $this->id;
+        }
+
         function set_user_name($user_name){
             $this->user_name = $user_name;
         }
@@ -26,6 +31,10 @@
         }
         function set_pass($pass){
             $this->pass = $pass;
+        }
+
+        function set_id($id){
+            $this->id = $id;
         }
     }  
 ?>
