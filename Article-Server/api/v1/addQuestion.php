@@ -10,7 +10,7 @@
 
     if(data_utils::missing_parm(2,$data, ["question","answer"])){
         $question = $data["question"];
-        $answer = $data["answer"];
+        $answer = $data["answer"];  
         if(Question::create_question($question,$answer,$conn)){
             echo json_encode(["result"=>true]);
             echo json_encode(["message"=>"Question added successfully"]);
