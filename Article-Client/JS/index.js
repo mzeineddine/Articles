@@ -1,5 +1,5 @@
 const base = "../";
-const api_base = "http://13.38.107.39/../";
+const api_base = "localhost2/";
 function alert_message(message){
     alert(message);
     return false;
