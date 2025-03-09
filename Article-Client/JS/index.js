@@ -42,7 +42,7 @@ function load_signup(){
     signup_form_doc = document.getElementById("signup-form");
     signup_form_doc.addEventListener('submit', signup);
     if(sessionStorage.hasOwnProperty("user_id"))
-        // window.location.replace(base+'Article-Client/home.html');
+        window.location.replace(base+'Article-Client/home.html');
     reset_fields_by_id(["user_name","email", "pass"]);
 }
 async function login(){
@@ -98,5 +98,53 @@ async function signup(){
         if(result == true)
             window.location.replace(base+'Article-Client/index.html');
         reset_fields_by_id(["user_name","email", "pass"]);
+    }
+}
+
+function load_home(){
+    get_questions();
+    const button = document.getElementsByClassName("add_question");
+    button[0].addEventListener("click", ()=>{window.location.replace(base+'Article-Client/FAQ.html');})
+    const search = document.getElementById('search');
+    search.addEventListener("change", get_matches);
+}
+
+function add_qa_card(div, question, answer){
+    const new_div = document.createElement('div');
+    new_div.classList.add('card');
+    new_div.innerHTML =  
+    `
+        <h4 class = "question">${question}</h4>
+        <p class = "answer">${answer}</p>
+    `;
+    div.appendChild(new_div);
+}
+
+async function get_questions(){
+    const response = await axios.post(api_base+"/Article-Server/api/v1/getQuestions.php",{});
+    console.log(response.data);
+    const [result,message] = split_response(response.data);
+    console.log(message);
+    console.log(result);
+    let container = document.getElementById("container");
+    for(let i = 0; i<result.length;i++){
+        add_qa_card(container,result[i]["question"],result[i]["answer"]);
+    }
+}
+
+function get_matches(){
+    let str = search.value.trim();
+    let match_str = new RegExp(str, "i");
+    let elements = document.getElementsByClassName('card');
+
+    for (let i = 0; i < elements.length; i++) {
+        let question = elements[i].querySelector(".question");
+        let answer = elements[i].querySelector(".answer");
+        
+        if (match_str.test(answer.innerHTML) || match_str.test(question.innerHTML)) {
+            elements[i].classList.remove("hidden");
+        } else {
+            elements[i].classList.add("hidden");
+        }   
     }
 }
