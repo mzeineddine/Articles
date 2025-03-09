@@ -1,4 +1,4 @@
-const base = "../";
+const base = "http://13.38.107.39/Article-Client/";
 const api_base = "http://13.38.107.39/";
 function alert_message(message){
     alert(message);
