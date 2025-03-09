@@ -1,5 +1,5 @@
-const base = "http://localhost/Projects/Articles/";
-const api_base = "http://localhost/Projects/Articles";
+const base = "../";
+const api_base = "http://13.38.107.39/../";
 function alert_message(message){
     alert(message);
     return false;
@@ -34,7 +34,7 @@ function load_login(){
     login_form_doc = document.getElementById("login-form");
     login_form_doc.addEventListener('submit', login);
     if(sessionStorage.hasOwnProperty("user_id"))
-        window.location.replace(base+'Article-Client/home.html');
+        window.location.replace(base+'home.html');
     reset_fields_by_id(["email", "pass"]);
 }
 
@@ -42,7 +42,7 @@ function load_signup(){
     signup_form_doc = document.getElementById("signup-form");
     signup_form_doc.addEventListener('submit', signup);
     if(sessionStorage.hasOwnProperty("user_id"))
-        window.location.replace(base+'Article-Client/home.html');
+        window.location.replace(base+'home.html');
     reset_fields_by_id(["user_name","email", "pass"]);
 }
 async function login(){
@@ -69,7 +69,7 @@ async function login(){
         else
             alert(message);
         if(sessionStorage.hasOwnProperty("user_id"))
-            window.location.replace(base+'Article-Client/home.html');
+            window.location.replace(base+'home.html');
         reset_fields_by_id(["user_name","email", "pass"]);
     }
 }
@@ -96,18 +96,18 @@ async function signup(){
         const [result,message] = split_response(response.data);
         console.log(message);
         if(result == true)
-            window.location.replace(base+'Article-Client/index.html');
+            window.location.replace(base+'index.html');
         reset_fields_by_id(["user_name","email", "pass"]);
     }
 }
 
 function load_home(){
     if(!sessionStorage.hasOwnProperty("user_id")){
-        window.location.replace(base+'Article-Client/index.html');
+        window.location.replace(base+'index.html');
     }
     get_questions();
     const button = document.getElementsByClassName("add_question");
-    button[0].addEventListener("click", ()=>{window.location.replace(base+'Article-Client/FAQ.html');})
+    button[0].addEventListener("click", ()=>{window.location.replace(base+'FAQ.html');})
     const search = document.getElementById('search');
     search.addEventListener("change", get_matches);
 }
@@ -157,7 +157,7 @@ function load_faq(){
         faq_form_doc = document.getElementById("faq-form");
         faq_form_doc.addEventListener('submit', add_aq);
     } else{
-        window.location.replace(base+'Article-Client/index.html');
+        window.location.replace(base+'index.html');
     }
 }
 
@@ -173,7 +173,7 @@ async function add_aq(){
         const [result,message] = split_response(response.data);
         console.log(message);
         if(result == true)
-            window.location.replace(base+'Article-Client/index.html');
+            window.location.replace(base+'index.html');
         reset_fields_by_id(["user_name","email", "pass"]);
     }
 }
