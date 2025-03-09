@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add AQ</title>
+    <link rel="stylesheet" href="./CSS/Style.css">
+</head>
+<body class="flex center column height100vh">
+    <form id="faq-form" class="flex center column width50-per space-between start-item auth">
+        <div class="flex column width100-per">
+            <label for="question">Question</label>
+            <textarea name="question" id="question" placeholder="Enter question here"></textarea>        </div>
+        <div class="flex column width100-per">
+            <label for="answer">Answer</label>
+            <textarea name="answer" id="answer" placeholder="Enter answer here"></textarea>
+        </div>
+        <button type="submit" class="width100-per">Add</button>
+        <div class="flex column width100-per">
+            <p>Want to go back? <a href="./home.html">home</a></p>
+        </div>
+    </form>
+    <script src="./JS/axios.min.js"></script>
+    <script src="./JS/index.js"></script>
+    <script>onload=load_faq()</script>
+</body>
+</html>

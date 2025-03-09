@@ -57,7 +57,7 @@ async function login(){
         }
     }
     if(is_checkable){
-        const response = await axios.post(api_base+"/Article-Server/api/v1/signup.php", {
+        const response = await axios.post(api_base+"/Article-Server/api/v1/login.php", {
             email: email.value,
             pass: pass.value
         });
@@ -102,6 +102,9 @@ async function signup(){
 }
 
 function load_home(){
+    if(!sessionStorage.hasOwnProperty("user_id")){
+        window.location.replace(base+'Article-Client/index.html');
+    }
     get_questions();
     const button = document.getElementsByClassName("add_question");
     button[0].addEventListener("click", ()=>{window.location.replace(base+'Article-Client/FAQ.html');})
@@ -146,5 +149,31 @@ function get_matches(){
         } else {
             elements[i].classList.add("hidden");
         }   
+    }
+}
+
+function load_faq(){
+    if(sessionStorage.hasOwnProperty("user_id")){
+        faq_form_doc = document.getElementById("faq-form");
+        faq_form_doc.addEventListener('submit', add_aq);
+    } else{
+        window.location.replace(base+'Article-Client/index.html');
+    }
+}
+
+async function add_aq(){
+    const question = document.getElementById("question");
+    const answer = document.getElementById("answer");
+    is_checkable = check_missing([question.value,answer.value,],["question","answer"]);
+    if(is_checkable){
+        const response = await axios.post(api_base+"/Article-Server/api/v1/addQuestion.php", {
+            question: question.value,
+            answer: answer.value
+        });
+        const [result,message] = split_response(response.data);
+        console.log(message);
+        if(result == true)
+            window.location.replace(base+'Article-Client/index.html');
+        reset_fields_by_id(["user_name","email", "pass"]);
     }
 }
