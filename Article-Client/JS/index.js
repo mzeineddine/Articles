@@ -57,7 +57,7 @@ async function login(){
         }
     }
     if(is_checkable){
-        const response = await axios.post(api_base+"/Article-Server/api/v1/login.php", {
+        const response = await axios.post(api_base+"Article-Server/api/v1/login.php", {
             email: email.value,
             pass: pass.value
         });
@@ -87,7 +87,7 @@ async function signup(){
         }
     }
     if(is_checkable){
-        const response = await axios.post(api_base+"/Article-Server/api/v1/signup.php", {
+        const response = await axios.post(api_base+"Article-Server/api/v1/signup.php", {
             user_name: user_name.value,
             email: email.value,
             pass: pass.value
@@ -124,7 +124,7 @@ function add_qa_card(div, question, answer){
 }
 
 async function get_questions(){
-    const response = await axios.post(api_base+"/Article-Server/api/v1/getQuestions.php",{});
+    const response = await axios.post(api_base+"Article-Server/api/v1/getQuestions.php",{});
     console.log(response.data);
     const [result,message] = split_response(response.data);
     console.log(message);
@@ -166,7 +166,7 @@ async function add_aq(){
     const answer = document.getElementById("answer");
     is_checkable = check_missing([question.value,answer.value,],["question","answer"]);
     if(is_checkable){
-        const response = await axios.post(api_base+"/Article-Server/api/v1/addQuestion.php", {
+        const response = await axios.post(api_base+"Article-Server/api/v1/addQuestion.php", {
             question: question.value,
             answer: answer.value
         });
